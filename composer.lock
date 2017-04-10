@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7a8a8152f1ae29ed35d1c8e4d4d76bfb",
+    "hash": "e57091f5fadee87c21fae27d87f884fd",
     "content-hash": "9ddf4aaf802260c2ea2a221b7aea4634",
     "packages": [
         {
@@ -494,12 +494,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/halfer/proximate-requester.git",
-                "reference": "0e2e78ed3f7d0a5c73e6c5d567269308d9e1bba0"
+                "reference": "a356d225c1d5748e1fd4c8088b80d91d64958a91"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/halfer/proximate-requester/zipball/0e2e78ed3f7d0a5c73e6c5d567269308d9e1bba0",
-                "reference": "0e2e78ed3f7d0a5c73e6c5d567269308d9e1bba0",
+                "url": "https://api.github.com/repos/halfer/proximate-requester/zipball/a356d225c1d5748e1fd4c8088b80d91d64958a91",
+                "reference": "a356d225c1d5748e1fd4c8088b80d91d64958a91",
                 "shasum": ""
             },
             "require": {
@@ -524,7 +524,7 @@
                 "source": "https://github.com/halfer/proximate-requester/tree/master",
                 "issues": "https://github.com/halfer/proximate-requester/issues"
             },
-            "time": "2017-04-10 09:47:33"
+            "time": "2017-04-10 13:57:38"
         },
         {
             "name": "illuminate/contracts",
