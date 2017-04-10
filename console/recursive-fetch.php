@@ -11,6 +11,8 @@
  * level of separation between functions. The alternative is to build an API to call to
  * store a response against a specific URL.
  *
+ * @todo There's a lot of boilerplate code here, can this be wrapped up in a class, like
+ * I've done for FileProxy?
  * @todo If the proxy address is wrong, the script should emit an error
  * @todo Upgrade Spatie\Crawler from 1.3 to 2.1.x? (It looks like 1.3 does not take the
  * query string into account when differentiating URLs, see
