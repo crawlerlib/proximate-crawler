@@ -22,14 +22,13 @@ use Proximate\SimpleCrawler;
 $rootPath = realpath(__DIR__ . '/..');
 require_once $rootPath . '/vendor/autoload.php';
 
-#$url = $startUrl = 'http://ilovephp.jondh.me.uk/';
+#$startUrl = 'http://ilovephp.jondh.me.uk/';
 #$pathRegex = '#^/en/tutorial#';
 
-$baseUrl = $startUrl = 'https://blog.jondh.me.uk/';
+$startUrl = 'https://blog.jondh.me.uk/';
 $pathRegex = '#^/category#';
 
 $crawler = new SimpleCrawler('localhost:8081');
 $crawler->
     init()->
-    initProfile($baseUrl, $pathRegex)->
-    crawl($startUrl);
+    crawl($startUrl, $pathRegex);

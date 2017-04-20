@@ -83,6 +83,11 @@ class SimpleCrawler
         return $this;
     }
 
+    /**
+     * Sets up an observer class for the Spatie crawler
+     *
+     * @return $this
+     */
     public function initObserver()
     {
         $this->observer = new Observer();
@@ -94,26 +99,34 @@ class SimpleCrawler
         return $this;
     }
 
-    public function initProfile($baseUrl, $pathRegex)
+    /**
+     * Returns a Profile class for the Spatie Crawler
+     */
+    protected function initProfile($baseUrl, $pathRegex)
     {
-        $this->profile = new Profile($baseUrl, $pathRegex);
-
-        return $this;
+        return new Profile($baseUrl, $pathRegex);
     }
 
     /**
      * The crawler method to call after everything is set up
      *
-     * @param string $baseUrl
+     * @param string $startUrl
+     * @param string $pathRegex
      */
-    public function crawl($baseUrl)
+    public function crawl($startUrl, $pathRegex)
     {
+        // Get the host to ensure we don't hop to a new host accidentally
+        $scheme = parse_url($startUrl, PHP_URL_SCHEME);
+        $host = parse_url($startUrl, PHP_URL_HOST);
+        $baseUrl = "{$scheme}://{$host}/";
+        $profile = $this->initProfile($baseUrl, $pathRegex);
+
         $t = microtime(true);
         $crawler = new Crawler($this->getClient(), 1);
         $crawler->
-            setCrawlProfile($this->getProfile())->
+            setCrawlProfile($profile)->
             setCrawlObserver($this->getObserver())->
-            startCrawling($baseUrl);
+            startCrawling($startUrl);
         $et = microtime(true) - $t;
 
         return $et;
@@ -152,16 +165,6 @@ class SimpleCrawler
         }
 
         return $this->client;
-    }
-
-    protected function getProfile()
-    {
-        if (!$this->profile)
-        {
-            throw new InitException("The crawler profile is not set");
-        }
-
-        return $this->profile;
     }
 
     protected function getObserver()
