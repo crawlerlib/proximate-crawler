@@ -13,18 +13,18 @@ class Profile implements CrawlProfile
 {
     use \Proximate\Logger;
 
-    protected $startUrl;
+    protected $baseUrl;
     protected $pathRegex;
 
     /**
      * Sets up some filtering settings for the crawler
      *
-     * @param string $startUrl e.g. "http://www.example.com"
+     * @param string $baseUrl e.g. "http://www.example.com"
      * @param string $pathRegex e.g. "#^/careers#"
      */
-    public function __construct(string $startUrl, $pathRegex)
+    public function __construct($baseUrl, $pathRegex)
     {
-        $this->startUrl = $startUrl;
+        $this->baseUrl = $baseUrl;
         $this->pathRegex = $pathRegex;
     }
 
@@ -49,12 +49,12 @@ class Profile implements CrawlProfile
 
     protected function sameHost(Url $url)
     {
-        return parse_url($this->startUrl, PHP_URL_HOST) === $url->host;
+        return parse_url($this->baseUrl, PHP_URL_HOST) === $url->host;
     }
 
     protected function startMatch(Url $url)
     {
-        return ((string) $url) == $this->startUrl;
+        return ((string) $url) == $this->baseUrl;
     }
 
     protected function regexMatch(Url $url)

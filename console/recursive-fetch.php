@@ -25,11 +25,11 @@ require_once $rootPath . '/vendor/autoload.php';
 #$url = $startUrl = 'http://ilovephp.jondh.me.uk/';
 #$pathRegex = '#^/en/tutorial#';
 
-$url = $startUrl = 'https://blog.jondh.me.uk/';
+$baseUrl = $startUrl = 'https://blog.jondh.me.uk/';
 $pathRegex = '#^/category#';
 
 $crawler = new SimpleCrawler('localhost:8081');
 $crawler->
     init()->
-    initProfile($startUrl, $pathRegex)->
-    crawl($url);
+    initProfile($baseUrl, $pathRegex)->
+    crawl($startUrl);

@@ -94,9 +94,9 @@ class SimpleCrawler
         return $this;
     }
 
-    public function initProfile($startUrl, $pathRegex)
+    public function initProfile($baseUrl, $pathRegex)
     {
-        $this->profile = new Profile($startUrl, $pathRegex);
+        $this->profile = new Profile($baseUrl, $pathRegex);
 
         return $this;
     }
