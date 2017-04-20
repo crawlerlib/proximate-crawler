@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e57091f5fadee87c21fae27d87f884fd",
-    "content-hash": "9ddf4aaf802260c2ea2a221b7aea4634",
+    "hash": "3c19a12f6cca04f5577a7fa14a015502",
+    "content-hash": "ce328508d6ca8c749aed655c1c670306",
     "packages": [
         {
             "name": "cache/adapter-common",
@@ -489,44 +489,6 @@
             "time": "2017-03-20 17:10:46"
         },
         {
-            "name": "halferbits/proximate-requester",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/halfer/proximate-requester.git",
-                "reference": "a356d225c1d5748e1fd4c8088b80d91d64958a91"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/halfer/proximate-requester/zipball/a356d225c1d5748e1fd4c8088b80d91d64958a91",
-                "reference": "a356d225c1d5748e1fd4c8088b80d91d64958a91",
-                "shasum": ""
-            },
-            "require": {
-                "cache/filesystem-adapter": "^0.4.0",
-                "clue/socket-raw": "^1.2",
-                "monolog/monolog": "^1.22",
-                "psr/cache": "^1.0",
-                "psr/log": "^1.0",
-                "spatie/crawler": "1.3.*"
-            },
-            "require-dev": {
-                "mockery/mockery": "1.0.0-alpha1",
-                "phpunit/phpunit": "^6.1"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Proximate": "src/"
-                }
-            },
-            "support": {
-                "source": "https://github.com/halfer/proximate-requester/tree/master",
-                "issues": "https://github.com/halfer/proximate-requester/issues"
-            },
-            "time": "2017-04-10 13:57:38"
-        },
-        {
             "name": "illuminate/contracts",
             "version": "v5.4.17",
             "source": {
@@ -833,6 +795,111 @@
                 "random"
             ],
             "time": "2017-03-13 16:27:32"
+        },
+        {
+            "name": "proximate/core",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/halfer/proximate-core.git",
+                "reference": "f0170294f50a8a0d5197ff8ef538f9b9a2fea2ef"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/halfer/proximate-core/zipball/f0170294f50a8a0d5197ff8ef538f9b9a2fea2ef",
+                "reference": "f0170294f50a8a0d5197ff8ef538f9b9a2fea2ef",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Proximate": "src/"
+                }
+            },
+            "support": {
+                "source": "https://github.com/halfer/proximate-core/tree/master",
+                "issues": "https://github.com/halfer/proximate-core/issues"
+            },
+            "time": "2017-04-19 20:46:04"
+        },
+        {
+            "name": "proximate/requester",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/halfer/proximate-requester.git",
+                "reference": "cb2d46d7f6bbfd2a7df6abb5f2f4478fc0ad5f8a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/halfer/proximate-requester/zipball/cb2d46d7f6bbfd2a7df6abb5f2f4478fc0ad5f8a",
+                "reference": "cb2d46d7f6bbfd2a7df6abb5f2f4478fc0ad5f8a",
+                "shasum": ""
+            },
+            "require": {
+                "cache/filesystem-adapter": "^0.4.0",
+                "clue/socket-raw": "^1.2",
+                "monolog/monolog": "^1.22",
+                "proximate/core": "dev-master",
+                "proximate/storage": "dev-master",
+                "psr/cache": "^1.0",
+                "psr/log": "^1.0"
+            },
+            "require-dev": {
+                "curl/curl": "^1.6",
+                "halfer/spiderling-utils": "dev-master",
+                "mockery/mockery": "1.0.0-alpha1",
+                "openbuildings/phpunit-spiderling": "0.2.0-rc.1",
+                "phpunit/phpunit": "^6.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Proximate": "src/"
+                }
+            },
+            "description": "Proximate/Requester is a set of PHP classes to build an playback-record HTTP proxy",
+            "support": {
+                "source": "https://github.com/halfer/proximate-requester/tree/master",
+                "issues": "https://github.com/halfer/proximate-requester/issues"
+            },
+            "time": "2017-04-20 10:37:02"
+        },
+        {
+            "name": "proximate/storage",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/halfer/proximate-storage.git",
+                "reference": "f247f308b5b85cd52f958255f9af87110784a02d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/halfer/proximate-storage/zipball/f247f308b5b85cd52f958255f9af87110784a02d",
+                "reference": "f247f308b5b85cd52f958255f9af87110784a02d",
+                "shasum": ""
+            },
+            "require": {
+                "cache/filesystem-adapter": "^0.4.0",
+                "proximate/core": "dev-master",
+                "psr/cache": "^1.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "1.0.0-alpha1",
+                "phpunit/phpunit": "^6.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Proximate": "src/"
+                }
+            },
+            "description": "Proximate/Storage is a set of classes for persisting data recorded by a Proximate proxy instance",
+            "support": {
+                "source": "https://github.com/halfer/proximate-storage/tree/master",
+                "issues": "https://github.com/halfer/proximate-storage/issues"
+            },
+            "time": "2017-04-20 10:33:02"
         },
         {
             "name": "psr/cache",
@@ -1199,7 +1266,9 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "halferbits/proximate-requester": 20
+        "proximate/requester": 20,
+        "proximate/storage": 20,
+        "proximate/core": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
