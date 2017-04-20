@@ -1,4 +1,5 @@
 {
+  "name": "proximate/crawler",
   "require": {
     "spatie/crawler": "1.3.*",
     "halferbits/proximate-requester": "dev-master"
