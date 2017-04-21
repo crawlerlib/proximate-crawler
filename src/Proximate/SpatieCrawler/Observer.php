@@ -19,9 +19,14 @@ class Observer implements CrawlObserver
 
     public function hasBeenCrawled(Url $url, $response, Url $foundOnUrl = null)
     {
-        $this->log(
-            sprintf("Crawled URL: %s", $url->path())
-        );
+        // Add query string if it is present
+        $address = $url->path();
+        if ($query = $url->query)
+        {
+            $address .= '?' . $query;
+        }
+
+        $this->log(sprintf("Crawled URL: %s", $address));
     }
 
     public function finishedCrawling()

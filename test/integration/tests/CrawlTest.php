@@ -47,8 +47,15 @@ class CrawlTest extends NamespacedTestCase
             allowNullProxy()->
             init()->
             crawl(self::URL_PREFIX . '/site2/', '#.+#');
-        $this->assertEquals(4, count($crawler->getCrawlLogs()));
-        #print_r($crawler->getCrawlLogs());
+        $this->assertEquals(
+            [
+                'Crawled URL: /site2/',
+                'Crawled URL: /site2/index.php?page=2',
+                'Crawled URL: /site2/index.php?page=3',
+                'Crawled URL: /site2/index.php?page=4',
+            ],
+            $crawler->getCrawlLogMessages()
+        );
     }
 }
 

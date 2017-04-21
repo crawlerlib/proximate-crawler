@@ -1,6 +1,7 @@
 <?php
-$page = isset($_GET['page']) ? $_GET['page'] + 1 : 1;
-$showLink = $page < 4;
+// We'll call no page the same as page 1
+$page = isset($_GET['page']) ? $_GET['page'] + 1 : 2;
+$showLink = $page <= 4;
 
 ?>
 <!DOCTYPE html>
