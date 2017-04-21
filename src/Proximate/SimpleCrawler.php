@@ -29,14 +29,22 @@ use Proximate\Exception\Init as InitException;
 class SimpleCrawler
 {
     protected $proxyAddress;
+    protected $allowNullProxy = false;
     protected $logger;
     protected $client;
     protected $observer;
     protected $profile;
 
-    public function __construct($proxyAddress)
+    public function __construct($proxyAddress = null)
     {
         $this->proxyAddress = $proxyAddress;
+    }
+
+    public function allowNullProxy()
+    {
+        $this->allowNullProxy = true;
+
+        return $this;
     }
 
     /**
@@ -70,15 +78,19 @@ class SimpleCrawler
         }
         $stack->push($proxyMiddleware->getMiddleware());
 
-        // Create the HTTP client
-        $this->client = new Client([
+        // The proxy is optional (though HTTPS sites won't work without it)
+        $options = [
             RequestOptions::COOKIES => true,
             RequestOptions::CONNECT_TIMEOUT => 10,
             RequestOptions::TIMEOUT => 10,
             RequestOptions::ALLOW_REDIRECTS => true,
-            RequestOptions::PROXY => $this->getProxyAddress(),
             'handler' => $stack,
-        ]);
+        ];
+        if ($proxy = $this->getProxyAddress())
+        {
+            $options[RequestOptions::PROXY] = $proxy;
+        }
+        $this->client = new Client($options);
 
         return $this;
     }
@@ -134,7 +146,7 @@ class SimpleCrawler
 
     protected function getProxyAddress()
     {
-        if (!$this->proxyAddress)
+        if (!$this->allowNullProxy && !$this->proxyAddress)
         {
             throw new InitException("The proxy address is not set");
         }

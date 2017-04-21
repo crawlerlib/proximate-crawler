@@ -5,6 +5,11 @@
         <meta charset="UTF-8">
     </head>
     <body>
-        <p>Linky to <a href="page2.html">another page</a>.</p>
+        <!--
+        @todo Why does the crawler need the absolute path? Without
+        it, it gets page 2 right but cannot find page 3. Log a bug,
+        or swap to version 2 of Spatie\Crawler?
+        -->
+        <p>Linky to <a href="/site1/page2.html">another page</a>.</p>
     </body>
 </html>
