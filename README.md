@@ -1,6 +1,8 @@
 Proximate/Crawler
 ===
 
+[![Build Status](https://travis-ci.org/halfer/proximate-crawler.svg?branch=master)](https://travis-ci.org/halfer/proximate-crawler)
+
 Introduction
 ---
 
