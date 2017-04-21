@@ -7,4 +7,10 @@
 			<directory>test/integration/tests</directory>
 		</testsuite>
 	</testsuites>
+	<listeners>
+		<listener
+			class="\Proximate\Test\TestListener"
+			file="test/integration/classes/TestListener.php"
+		/>
+	</listeners>
 </phpunit>
