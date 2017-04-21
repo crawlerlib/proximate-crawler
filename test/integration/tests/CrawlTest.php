@@ -31,13 +31,24 @@ class CrawlTest extends NamespacedTestCase
                 'Crawled URL: /site1/page2.html',
                 'Crawled URL: page3.html',
             ],
-            $crawler->getCrawlLogs()
+            $crawler->getCrawlLogMessages()
         );
     }
 
+    /**
+     * Crawls a site based on query string links
+     *
+     * @todo Add query strings to log messages
+     */
     public function testQueryStringLinks()
     {
-        $this->markTestIncomplete();
+        $crawler = new TestCrawler(null);
+        $crawler->
+            allowNullProxy()->
+            init()->
+            crawl(self::URL_PREFIX . '/site2/', '#.+#');
+        $this->assertEquals(4, count($crawler->getCrawlLogs()));
+        #print_r($crawler->getCrawlLogs());
     }
 }
 
@@ -59,7 +70,12 @@ class TestCrawler extends SimpleCrawler
 
     public function getCrawlLogs()
     {
-        $records = $this->getLogHandler()->getRecords();
+        return $this->getLogHandler()->getRecords();
+    }
+
+    public function getCrawlLogMessages()
+    {
+        $records = $this->getCrawlLogs();
         array_walk($records, function(&$item) {
             $item = $item['message'];
         });
