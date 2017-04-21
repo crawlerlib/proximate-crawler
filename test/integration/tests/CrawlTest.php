@@ -29,7 +29,7 @@ class CrawlTest extends NamespacedTestCase
             [
                 'Crawled URL: /site1/page1.html',
                 'Crawled URL: /site1/page2.html',
-                'Crawled URL: page3.html',
+                'Crawled URL: /site1/page3.html',
             ],
             $crawler->getCrawlLogMessages()
         );
