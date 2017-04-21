@@ -24,6 +24,15 @@
         {
             "type": "vcs",
             "url": "https://github.com/halfer/proximate-core.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/halfer/spiderling-utils.git"
         }
-    ]
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^6.1",
+        "halfer/spiderling-utils": "dev-master",
+        "openbuildings/phpunit-spiderling": "0.2.0-rc.1"
+    }
 }
