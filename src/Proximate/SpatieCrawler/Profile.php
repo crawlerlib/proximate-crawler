@@ -8,6 +8,7 @@ namespace Proximate\SpatieCrawler;
 
 use Spatie\Crawler\CrawlProfile;
 use Spatie\Crawler\Url;
+use Proximate\Exception\Init as InitException;
 
 class Profile implements CrawlProfile
 {
@@ -24,6 +25,9 @@ class Profile implements CrawlProfile
      */
     public function __construct($baseUrl, $pathRegex)
     {
+        // Do some validation before allowing the instantiation
+        $this->validateRegex($pathRegex);
+
         $this->baseUrl = $baseUrl;
         $this->pathRegex = $pathRegex;
     }
@@ -60,5 +64,21 @@ class Profile implements CrawlProfile
     protected function regexMatch(Url $url)
     {
         return preg_match($this->pathRegex, $url->path) === 1;
+    }
+
+    protected function validateRegex($pattern)
+    {
+        // Use error suppression to test if the regex is OK
+        @preg_match($pattern, '');
+
+        // ... and we test it here
+        $lastError = error_get_last();
+        $lastMessage = isset($lastError['message']) ? $lastError['message'] : '';
+        $errorPrefix =  'preg_match(): ';
+        if(strpos($lastMessage, $errorPrefix) === 0)
+        {
+            $message = substr($lastMessage, strlen($errorPrefix));
+            throw new InitException($message);
+        }
     }
 }

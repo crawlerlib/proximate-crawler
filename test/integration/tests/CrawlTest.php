@@ -70,6 +70,20 @@ class CrawlTest extends NamespacedTestCase
         $crawlerSelf = $crawler->initMiddleware();
         $this->assertInstanceOf(TestCrawler::class, $crawlerSelf);
     }
+
+    /**
+     * @expectedException \Proximate\Exception\Init
+     */
+    public function testBadRegexBlowsUp()
+    {
+        $missingDelimiter = '#.+';
+
+        $crawler = new TestCrawler(null);
+        $crawler->
+            allowNullProxy()->
+            init()->
+            crawl(self::URL_PREFIX . '/site2/', $missingDelimiter);
+    }
 }
 
 class TestCrawler extends SimpleCrawler
