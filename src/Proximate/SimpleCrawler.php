@@ -123,14 +123,24 @@ class SimpleCrawler
     /**
      * The crawler method to call after everything is set up
      *
+     * @todo Deriving a base url will fail to get a non-standard port number
+     *
      * @param string $startUrl
      * @param string $pathRegex
      */
     public function crawl($startUrl, $pathRegex)
     {
-        // Get the host to ensure we don't hop to a new host accidentally
+        // Ensure the URL is relatively sensible
         $scheme = parse_url($startUrl, PHP_URL_SCHEME);
         $host = parse_url($startUrl, PHP_URL_HOST);
+        if (!$scheme || !$host)
+        {
+            throw new InitException(
+                sprintf("Could not parse `%s` into a domain name", $startUrl)
+            );
+        }
+
+        // Get the host to ensure we don't hop to a new host accidentally
         $baseUrl = "{$scheme}://{$host}/";
         $profile = $this->initProfile($baseUrl, $pathRegex);
 

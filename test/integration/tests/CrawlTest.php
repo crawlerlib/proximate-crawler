@@ -84,6 +84,40 @@ class CrawlTest extends NamespacedTestCase
             init()->
             crawl(self::URL_PREFIX . '/site2/', $missingDelimiter);
     }
+
+    /**
+     * @expectedException \Proximate\Exception\Init
+     */
+    public function testBadScheme1BlowsUp()
+    {
+        $this->simpleCrawl('www.example.com');
+    }
+
+    /**
+     * @expectedException \Proximate\Exception\Init
+     */
+    public function testBadScheme2BlowsUp()
+    {
+        $this->simpleCrawl('://www.example.com');
+    }
+
+    /**
+     * @expectedException \Proximate\Exception\Init
+     */
+    public function testBadHostBlowsUp()
+    {
+        $this->simpleCrawl('http://');
+    }
+
+    // @todo Use me above
+    protected function simpleCrawl($startUrl, $pathRegex = "#.+#")
+    {
+        $crawler = new TestCrawler(null);
+        $crawler->
+            allowNullProxy()->
+            init()->
+            crawl($startUrl, $pathRegex);
+    }
 }
 
 class TestCrawler extends SimpleCrawler
