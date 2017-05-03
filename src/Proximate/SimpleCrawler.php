@@ -62,6 +62,7 @@ class SimpleCrawler
 
     public function initLogger()
     {
+        // @todo This does not go to stdout, probably to stderr
         $this->logger = new Logger('stdout');
         $this->getLogger()->pushHandler(new ErrorLogHandler());
 
@@ -74,7 +75,7 @@ class SimpleCrawler
         $proxyMiddleware = new ProxyMiddleware();
         if ($logger = $this->getLogger())
         {
-            $proxyMiddleware->addLogger($logger);
+            $proxyMiddleware->setLogger($logger);
         }
         $stack->push($proxyMiddleware->getMiddleware());
 
@@ -105,7 +106,7 @@ class SimpleCrawler
         $this->observer = new Observer();
         if ($logger = $this->getLogger())
         {
-            $this->getObserver()->addLogger($logger);
+            $this->getObserver()->setLogger($logger);
         }
 
         return $this;

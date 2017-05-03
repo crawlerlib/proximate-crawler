@@ -57,6 +57,19 @@ class CrawlTest extends NamespacedTestCase
             $crawler->getCrawlLogMessages()
         );
     }
+
+    /**
+     * This runs through some of the initMiddleware code for sensibility checking
+     */
+    public function testInitMiddleware()
+    {
+        $crawler = new TestCrawler(null);
+        $crawler->
+            allowNullProxy()->
+            init();
+        $crawlerSelf = $crawler->initMiddleware();
+        $this->assertInstanceOf(TestCrawler::class, $crawlerSelf);
+    }
 }
 
 class TestCrawler extends SimpleCrawler
