@@ -16,7 +16,7 @@ use GuzzleHttp\RequestOptions;
 
 // Namespaces for logging
 use Monolog\Logger;
-use Monolog\Handler\ErrorLogHandler;
+use Monolog\Handler\StreamHandler;
 
 // Namespaces for the creation and set-up of the crawler
 use Spatie\Crawler\Crawler;
@@ -62,9 +62,8 @@ class SimpleCrawler
 
     public function initLogger()
     {
-        // @todo This does not go to stdout, probably to stderr
         $this->logger = new Logger('stdout');
-        $this->getLogger()->pushHandler(new ErrorLogHandler());
+        $this->getLogger()->pushHandler(new StreamHandler("php://stdout"));
 
         return $this;
     }
